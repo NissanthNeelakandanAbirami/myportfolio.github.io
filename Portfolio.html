@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nissanth Neelakandan Abirami's Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            border: none;
+            box-sizing: border-box;
+        }
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background: #121212;
+        }
+        body {
+            display: flex;
+            flex-direction: row;
+            font-family: 'Open Sans', sans-serif;
+            color: #F0F0F0;
+            font-weight: 300;
+            line-height: 1.7;
+            min-height: 100vh;
+            align-items: stretch;
+        }
+        #sidebar {
+            width: 250px;
+            background: #1F1F1F;
+            height: 100vh;
+            padding: 20px;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            transition: transform 0.5s ease-in-out;
+            overflow-y: auto;
+        }
+        #sidebar img {
+            display: block;
+            margin: 0 auto;
+            border-radius: 50%;
+            width: 100px;
+            margin-bottom: 10px;
+            transition: transform 0.3s ease-in-out;
+        }
+        #sidebar img:hover {
+            transform: scale(1.1);
+        }
+        #sidebar h1 {
+            font-size: 1.5em;
+            margin: 10px 0;
+            text-align: center;
+            color: #fff;
+            animation: fadeIn 1s ease-in-out;
+        }
+        #sidebar p {
+            color: #999;
+            text-align: center;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+        #sidebar nav {
+            margin-top: 20px;
+            width: 100%;
+        }
+        #sidebar nav a {
+            color: #999;
+            text-decoration: none;
+            display: block;
+            margin: 10px 0;
+            padding: 10px;
+            transition: color 0.3s ease-in-out,
+                        background 0.3s ease-in-out;
+            border-radius: 5px;
+            text-align: center;
+        }
+        #sidebar nav a:hover {
+            color: #fff;
+            background: #149ddd;
+        }
+        #toggle-btn {
+            position: fixed;
+            left: 20px;
+            top: 20px;
+            background: #149ddd;
+            border: none;
+            color: #fff;
+            padding: 10px 20px;
+            cursor: pointer;
+            z-index: 1001;
+            border-radius: 5px;
+            transition: background 0.3s ease-in-out;
+        }
+        #toggle-btn:hover {
+            background: #37b3ed;
+        }
+        .content {
+            margin-left: 250px;
+            padding: 0;
+            background: #121212;
+            width: calc(100% - 250px);
+            box-sizing: border-box;
+            min-height: 100vh;
+            overflow: auto;
+        }
+        .section {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
+            background: #121212;
+            color: #fff;
+            width: 100%;
+            min-height: 100vh; /* Ensure each section takes full viewport height */
+        }
+        .hero {
+            background: url('IMG_4635.JPG') no-repeat center center/cover;
+            animation: zoomIn 2s ease-in-out;
+            color: #fff;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100%;
+        }
+        .hero h1 {
+            font-size: 3em;
+            margin: 0;
+        }
+        .hero p {
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
+        .about-container {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            padding: 20px;
+            background: #1E1E1E;
+            color: #F0F0F0;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            margin: 20px 0;
+            width: 100%;
+            box-sizing: border-box;
+            position: relative;
+            z-index: 1;
+        }
+        .about-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .about img {
+            border-radius: 50px;
+            width: 100%;
+            height: auto;
+            max-width: auto;
+            max-height: auto;
+            object-fit: cover;
+            flex-shrink: 1;
+            flex-grow: 0;
+        }
+        .about-content {
+            flex: 2;
+            max-width: 800px;
+            padding-top: 20px;
+        }
+        .about h2 {
+            color: #FFFFFF;
+            margin-top: 0;
+            font-size: 2em;
+        }
+        .about p, .about ul {
+            color: #D0D0D0;
+            font-size: 1.2em;
+            line-height: 1.6;
+        }
+        .about ul {
+            padding: 0;
+            list-style: none;
+        }
+        .about ul li {
+            margin: 5px 0;
+        }
+        .about ul li a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        .about ul li a:hover {
+            text-decoration: underline;
+        }
+        .about ul li strong {
+            font-weight: bold;
+            color: #FFFFFF;
+        }
+        .about p {
+            margin: 10px 0;
+        }
+        .education, .experience, .projects, .contact {
+            animation: fadeIn 2s ease-in-out;
+            background: #1E1E1E;
+        }
+        .skills {
+            background: #1E1E1E;
+            color: #F0F0F0;
+            padding: 40px 20px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+        .skills-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+        }
+        .skills-column {
+            flex: 1;
+            max-width: 400px;
+        }
+        .skills-column ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .skills-column li {
+            font-size: 16px;
+            padding: 10px 0;
+            border-bottom: 1px solid #444;
+            position: relative;
+            animation: slideIn 0.5s ease-in-out;
+        }
+        .skills-column li::before {
+            content: '•';
+            color: #149ddd;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        .education {
+            background: #1E1E1E;
+            color: #F0F0F0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 70px;
+            width: 100%;
+        }
+        .education h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .education-cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 50px;
+        }
+        .education-card {
+            background: #2E2E2E;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            width: 500px;
+            transition: transform 0.3s ease-in-out;
+            height: 700px;
+        }
+        .education-card:hover {
+            transform: scale(1.05);
+        }
+        .education-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+        .education-card-content {
+            padding: 20px;
+            text-align: left;
+        }
+        .education-card-content h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            color: #FFFFFF;
+        }
+        .education-card-content p {
+            color: #B0B0B0;
+            font-size: 1em;
+            line-height: 1.6;
+        }
+        .education-card-content ul {
+            padding: 0;
+            list-style: none;
+        }
+        .education-card-content ul li {
+            margin: 5px 0;
+        }
+        .experience {
+            background: #1E1E1E;
+            color: #F0F0F0;
+            padding: 40px 20px;
+            box-sizing: border-box;
+            text-align: center;
+            width: 100%;
+        }
+        .experience-container {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+        .experience-entry {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 20px;
+            background: #2E2E2E;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease-in-out;
+        }
+        .experience-entry:hover {
+            transform: translateY(-10px);
+        }
+        .experience-entry:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+        .experience-entry img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .experience-content {
+            flex: 1;
+            text-align: left;
+        }
+        .experience-content h3 {
+            color: #FFFFFF;
+            margin-top: 0;
+            font-size: 1.5em;
+        }
+        .experience-content p {
+            color: #B0B0B0;
+            font-size: 1em;
+            line-height: 1.6;
+            margin: 10px 0;
+        }
+        .experience-content ul {
+            list-style: none;
+            padding: 0;
+            margin: 10px 0;
+        }
+        .experience-content ul li {
+            color: #B0B0B0;
+            font-size: 1em;
+            line-height: 1.6;
+            margin: 5px 0;
+            position: relative;
+            padding-left: 20px;
+        }
+        .experience-content ul li::before {
+            content: '•';
+            color: #149ddd;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        .container:nth-child(even) .image {
+            order: 2;
+        }
+        .container:nth-child(even) .text {
+            order: 1;
+        }
+        .image, .text {
+            flex: 1;
+        }
+        .image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+        .projects {
+            background: #1E1E1E;
+            color: #F0F0F0;
+            padding: 40px 20px;
+            box-sizing: border-box;
+            text-align: center;
+            width: 100%;
+        }
+        .projects h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .projects-container {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .projects-container::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: #149ddd;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+        .project-item {
+            padding: 20px;
+            position: relative;
+            width: 50%;
+        }
+        .project-item::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            right: -12.5px;
+            background-color: #2E2E2E;
+            border: 4px solid #149ddd;
+            top: 20px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        .project-item.left {
+            left: 0;
+        }
+        .project-item.right {
+            left: 50%;
+        }
+        .project-item.right::after {
+            left: -16px;
+        }
+        .project-content {
+            padding: 20px 30px;
+            background: #2E2E2E;
+            position: relative;
+            border-radius: 6px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        .project-content h3 {
+            margin: 0 0 10px;
+            color: #FFFFFF;
+        }
+        .project-content p {
+            margin: 0 0 10px;
+            color: #B0B0B0;
+        }
+        .project-content a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        .project-content a:hover {
+            text-decoration: underline;
+        }
+        .contact {
+            background: #1E1E1E;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: left;
+            padding: 40px;
+            box-sizing: border-box;
+            width: 100%;
+        }
+        .contact-info {
+            background: #2E2E2E;
+            color: #F0F0F0;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 800px;
+            margin-bottom: 20px;
+        }
+        .contact-info p {
+            margin: 10px 0;
+        }
+        .contact-info a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+        .map-container {
+            width: 100%;
+            max-width: 800px;
+            height: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+            width: 100%;
+            max-width: 800px;
+        }
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #444;
+            background: #2E2E2E;
+            color: #F0F0F0;
+        }
+        .contact-form button {
+            background: #149ddd;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease-in-out;
+        }
+        .contact-form button:hover {
+            background: #37b3ed;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.5);
+            }
+            to {
+                transform: scale(1);
+            }
+        }
+        @keyframes fillSkill {
+            to {
+                width: 100%;
+            }
+        }
+        .timeline-content-left img, .timeline-content-right img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+        .timeline-content-left {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+        .timeline-content-right {
+            display: flex;
+            flex-direction: row-reverse;
+            align-items: center;
+        }
+        .timeline-content-left .text, .timeline-content-right .text {
+            padding: 10px;
+        }
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+            background-color: #1c1c1c;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin: 0 auto;
+            max-width: 1200px; /* Adjust as needed */
+        }
+
+        .skill-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: #333;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out, background 0.3s ease-in-out;
+            position: relative;
+            width: 150px;
+            height: 150px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .skill-item:hover {
+            transform: scale(1.1);
+            background: #444;
+        }
+
+        .skill-item .skill-icon {
+            font-size: 30px;
+            color: #3498db;
+            margin-bottom: 10px;
+        }
+
+        .skill-item .skill-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .skill-item::before {
+            content: attr(data-skill);
+            font-weight: bold;
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #222;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+            white-space: nowrap;
+        }
+
+        .skill-item:hover::before {
+            opacity: 1;
+        }
+
+        .skill-item::after {
+            content: attr(data-description);
+            font-size: 14px;
+            position: absolute;
+            bottom: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #222;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+            width: 200px;
+            text-align: center;
+        }
+
+        .skill-item:hover::after {
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            .skills-container {
+                justify-content: center;
+                gap: 10px;
+            }
+
+            .skill-item {
+                width: 120px;
+                height: 120px;
+                margin: 5px;
+            }
+
+            .skill-item .skill-icon {
+                font-size: 20px;
+            }
+
+            .skill-item .skill-text {
+                font-size: 14px;
+            }
+
+            .skill-item::before {
+                font-size: 12px;
+                bottom: -20px;
+            }
+
+            .skill-item::after {
+                font-size: 12px;
+                bottom: -50px;
+                width: 150px;
+            }
+        }
+
+        @media only screen and (max-width: 768px) {
+            body {
+                flex-direction: column;
+                overflow: auto;
+            }
+            #sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                transform: translateX(-100%);
+                transition: transform 0.3s ease-in-out;
+            }
+            #sidebar.active {
+                transform: translateX(0);
+            }
+            #toggle-btn {
+                display: block;
+            }
+            .content {
+                margin-left: 0;
+                width: 100%;
+            }
+            .education-cards {
+                flex-direction: column;
+                align-items: center;
+            }
+            .education-card {
+                width: 90%;
+                margin-bottom: 20px;
+            }
+            .experience-entry {
+                flex-direction: column;
+                text-align: center;
+            }
+            .experience-entry:nth-child(even) {
+                flex-direction: column;
+            }
+            .projects-container::after {
+                left: 5%;
+            }
+            .project-item {
+                width: 90%;
+                left: 5%;
+            }
+            .project-item.right {
+                left: 5%;
+            }
+            .skills-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button id="toggle-btn">☰ Menu</button>
+    <div id="sidebar">
+        <img src="IMG_9949.jpg" alt="Nissanth Neelakandan Abirami">
+        <h1>Nissanth Neelakandan Abirami</h1>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#education">Education</a>
+            <a href="#experience">Experience</a>
+            <a href="#projects">Projects</a>
+            <a href="#skills">Skills</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </div>
+    <div class="content">
+        <section class="section hero" id="home">
+            <h1>Nissanth Neelakandan Abirami</h1>
+            <p>Machine Learning | Data Science | NLP | Stock Market Analysis</p>
+            <div class="underline"></div>
+        </section>
+        <section class="section about" id="about">
+            <div class="about-container">
+                <div class="about-image">
+                    <img src="IMG_5622.JPG" alt="Nissanth Neelakandan Abirami">
+                </div>
+                <div class="about-content">
+                    <h2>About</h2>
+                    <p>Hi! I'm a USC graduate with a major in Electrical and Computer Engineering, driven by a passion for
+                        Machine Learning, Data Science and Stock Market Analysis. I am eager to contribute my
+                        skills and insights in fields of tech, finance and relevant industries. I bring a robust
+                        academic background combined with hands-on experience and a keen interest in shaping data-driven
+                        solutions.</p>
+                    <ul>
+                        <li><strong>Degree:</strong> Master of Science</li>
+                        <li><strong>University:</strong> University of Southern California</li>
+                        <li><strong>Email:</strong> <a href="mailto:nissanth@usc.edu">nissanth@usc.edu</a></li>
+                        <li><strong>LinkedIn:</strong> <a
+                                href="https://www.linkedin.com/in/nissanth-neelakandan-abirami-76a828217/">Nissanth
+                                Neelakandan Abirami</a></li>
+                        <li><strong>Major:</strong> Machine Learning and Data Science</li>
+                        <li><strong>Experience:</strong> ~2 years</li>
+                        <li><strong>GitHub:</strong> <a href="https://github.com/NissanthNeelakandanAbirami">Nissanth
+                                Neelakandan Abirami</a></li>
+                        <li><strong>Open to relocate:</strong> Yes</li>
+                    </ul>
+                    <p>I enjoy working on projects like creating chatbots that can help people with their finances or developing models for assistive technologies. I'm fascinated by how we can use AI to solve problems and make things more efficient. Outside of work, I'm curious about exploring new ways technology can make a positive impact.I'm also preparing for my AWS exam series to deepen my cloud knowledge. Outside of work, I love stock market trading and investing. Analyzing stocks and keeping up with market trends is my go-to hobby, and it's something I dive into during my free time. <span
+                            style="color: blue;"> 
+                             </span></p>
+                </div>
+            </div>
+        </section>
+        <section class="section education" id="education">
+            <h2>Education</h2>
+            <div class="education-cards">
+                <div class="education-card">
+                    <img src="stock_charlesmccollum-00389-scaled.jpg" alt="USC">
+                    <div class="education-card-content">
+                        <h3>University of Southern California, Master of Science in ECE (Machine Learning and Data Science)</h3>
+                        <p>August 2023 - May 2025</p>
+                        <p>Relevant Coursework: Probability for Electrical and Computer Engineers, Linear Algebra for Engineering, A Computational Introduction to Deep Learning, Introduction to Digital Signal Processing, Machine Learning 1 - Supervised Methods (Mathematical Pattern Recognition), Deep Learning Systems, Data Mining and Computing Principles for Electrical and Computer Engineers (DSA)</p>
+                    </div>
+                </div>
+                <div class="education-card">
+                    <img src="Infra-New-3-1024x592.jpg" alt="Anna University">
+                    <div class="education-card-content">
+                        <h3>Anna University (Sri Venkateswara College of Engineering), Bachelor of Engineering in ECE</h3>
+                        <p>August 2019 - May 2023</p>
+                        <p>Relevant Coursework: Programming for Problem-Solving, Object-Oriented Programming and Data Structures, Digital Signal Processing, User Interface Design, Introduction to Industry 4.0 and Industrial Internet of Things, Robotics and Automation</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    <section class="section experience" id="experience">
+    <h2>Professional Experience</h2>
+    <div class="experience-container">
+        <div class="experience-entry">
+            <div class="experience-content">
+                <h3>University of Southern California, Los Angeles, USA</h3>
+                <p>Research Assistant (April 2024 - Present)</p>
+                <ul>
+                    <li>Design DeepLab V3 and YOLO models with 95% accuracy for blind assistance, collaborating with Professor Anita Penskova.</li>
+                    <li>Integrate these models with Raspberry Pi and reduce data transmission by 50% using federated learning for mobile integration.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="experience-entry">
+            <div class="experience-content">
+                <h3>Pilvi Systems, Texas, USA</h3>
+                <p>Project Intern (January 2024 - Present)</p>
+                <ul>
+                    <li>Spearhead the development of a data engineering and automation pipeline using Python for web scraping and Kibana for visualization, resulting in a 40% reduction in data loading time and a 20% increase in processing efficiency.</li>
+                    <li>Conduct comprehensive job market trend analysis from 2005 to 2023 across LinkedIn, Glassdoor, Indeed, Facebook, and Handshake, streamlining trend analysis.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="experience-entry">
+            <div class="experience-content">
+                <h3>DIY Guru, New Delhi, India</h3>
+                <p>Nanodegree + Electric Vehicles Process Intern (September 2022 - April 2023)</p>
+                <ul>
+                    <li>Analyzed Electric Vehicle (EV) operational frameworks, developed advanced Python-based image recognition system with 92% real-time accuracy, surpassing industry standards.</li>
+                    <li>Provided expertise in Machine Learning algorithms and pioneered Large Language Model (LLM) integration for EV voice recognition, enhancing user interaction.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="experience-entry">
+            <div class="experience-content">
+                <h3>Kaashiv Infotech, Chennai, India</h3>
+                <p>Cloud Computing and IOT Design Intern (June 2021 - August 2021)</p>
+                <ul>
+                    <li>Optimized a data engineering and automation pipeline using cloud technologies, resulting in a 40% reduction in data loading time and a 20% increase in data processing efficiency compared to previous system.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section projects" id="projects">
+    <h2>Projects</h2>
+    <div class="projects-container">
+        <div class="project-item left">
+            <div class="project-content">
+                <h3>Finance Bot (June 2024 - July 2024)</h3>
+                <p>Devised an LLM chatbot using Hugging Face's Mistral-7B-Instruct model to answer questions based on financial data from 2021 to 2023. Utilized a combination of text generation pipelines and FAISS for efficient information retrieval, enabling real-time responses and detailed financial analyses. Utilized data visualization and analysis techniques with advanced metrics and models, providing comprehensive insights into financial transactions.</p>
+            </div>
+        </div>
+        <div class="project-item right">
+            <div class="project-content">
+                <h3>Pneumonia Detection using Generative Models and Vision Transformer (May 2024 - June 2024)</h3>
+                <p>Formulated an autoencoder and Vision Transformer model for pneumonia detection in chest X-ray images, achieving a Vision Transformer test accuracy of 95.8%. Preprocessed data using ImageDataGenerator with various augmentations and handled training with 20 epochs.</p>
+            </div>
+        </div>
+        <div class="project-item left">
+            <div class="project-content">
+                <h3>Regression Modelling of Oral Temperature using Non-Contact Infrared Thermography (April 2024 - May 2024)</h3>
+                <p>Created a Random Forest Regressor model for forecasting oral temperature, achieving a test RMSE of 0.2435 and R² of 0.8040. Preprocessed data, reducing features from 244 to 46, and handled 1261 missing values using KNN Imputer. Implemented KNN, Linear Regression, and SVR models, optimizing through hyperparameter tuning for improved accuracy.</p>
+            </div>
+        </div>
+        <div class="project-item right">
+            <div class="project-content">
+                <h3>CNN Super Resolution for Hypercar (November - December 2023)</h3>
+                <p>Architected a four-layer Convolutional Neural Network upscaling algorithm to enhance hypercar images, achieving high-resolution enhancements without compromising image integrity.</p>
+            </div>
+        </div>
+        <div class="project-item left">
+            <div class="project-content">
+                <h3>Black Rock Stock Price Prediction (June - July 2023)</h3>
+                <p>Implemented advanced stock prediction models using LSTM, K-Nearest Neighbours, and CNNs. Enhanced predictive accuracy and insights into market trends through the integration of clustering methods.</p>
+            </div>
+        </div>
+        <div class="project-item right">
+            <div class="project-content">
+                <h3>Smart Car Automation System (July 2022 - January 2023)</h3>
+                <p>Incorporated real-time data processing and decision-making tools into a Flutter app, enabling intelligent and adaptable responses in an automated car system.</p>
+            </div>
+        </div>
+        <div class="project-item left">
+            <div class="project-content">
+                <h3>Python-based Image Recognition for Electric Vehicles (September 2022 - April 2023)</h3>
+                <p>Developed a Python-based image recognition system for Electric Vehicles with a 92% real-time accuracy, significantly surpassing industry standards.</p>
+            </div>
+        </div>
+        <div class="project-item right">
+            <div class="project-content">
+                <h3>CineLit Recommender – Elevating Entertainment Discovery (November 2023 - December 2023)</h3>
+                <p>Developed content and collaborative filtering techniques that resulted in a 15% improvement in accuracy of recommendations made to users, increasing user satisfaction and interaction with system.</p>
+            </div>
+        </div>
+        <div class="project-item left">
+            <div class="project-content">
+                <h3>A Novel Method for Handwritten Digit Recognition System (January 2022 - September 2022)</h3>
+                <p>Enhanced quality and resilience of processes, system starts with Data preprocessing, involving Pattern Recognition input of handwritten digit pictures. Employed preprocessing methods such as image denoising, normalization, and scaling to guarantee consistent input for digit recognition.</p>
+            </div>
+        </div>
+        <div class="project-item right">
+            <div class="project-content">
+                <h3>Chemical Segregation using Logistic Regression (November 2021 - December 2021)</h3>
+                <p>Delivered an 85% accuracy rate in categorizing chemicals into specified categories with a logistic regression model, demonstrating its effectiveness in predicting chemical classifications based on properties.</p>
+            </div>
+        </div>
+    </div>
+</section>
+        <section class="section skills" id="skills">
+            <h2>Skills</h2>
+            <p>In the realm of data, my mission transcends mere number crunching; I aim to transform statistics into
+                compelling stories. With expertise in data analysis, engineering, modeling, and visualization, I adeptly
+                use SQL, R, Python, and tools like Tableau, Power BI, and Looker to uncover insights and craft impactful
+                narratives.</p>
+            <div class="skills-container">
+                <div class="skill-item">
+                    <span class="skill-icon">🐍</span>
+                    <span class="skill-text">Python</span>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-icon">🐘</span>
+                    <span class="skill-text">MySQL</span>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-icon">💻</span>
+                    <span class="skill-text">C++</span>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-icon">📊</span>
+                    <span class="skill-text">R</span>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-icon">📈</span>
+                    <span class="skill-text">Tableau</span>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-icon">🌐</span>
+                    <span class="skill-text">HTML</span>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-icon">📐</span>
+                    <span class="skill-text">NumPy</span>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-icon">🎨</span>
+                    <span class="skill-text">CSS</span>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-icon">📜</span>
+                    <span class="skill-text">JavaScript</span>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-icon">🔬</span>
+                    <span class="skill-text">SciPy</span>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-icon">⚙️</span>
+                    <span class="skill-text">PyTorch</span>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-icon">📸</span>
+                    <span class="skill-text">OpenCV</span>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-icon">📊</span>
+                    <span class="skill-text">Matplotlib</span>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-icon">🔠</span>
+                    <span class="skill-text">TensorFlow</span>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-icon">🤖</span>
+                    <span class="skill-text">BERT</span>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-icon">📊</span>
+                    <span class="skill-text">Seaborn</span>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-icon">🕸️</span>
+                    <span class="skill-text">Selenium</span>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-icon">🧮</span>
+                    <span class="skill-text">Pandas</span>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-icon">📊</span>
+                    <span class="skill-text">Power BI</span>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-icon">💾</span>
+                    <span class="skill-text">Windows</span>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-icon">🐧</span>
+                    <span class="skill-text">Linux</span>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-icon">🍏</span>
+                    <span class="skill-text">macOS</span>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-icon">📋</span>
+                    <span class="skill-text">MS Office</span>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-icon">📊</span>
+                    <span class="skill-text">Excel</span>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-icon">🐙</span>
+                    <span class="skill-text">GitHub</span>
+                </div>
+            </div>
+        </section>
+        <section class="section contact" id="contact">
+            <h2>Contact</h2>
+            <div class="contact-info">
+                <p>Location: <br>Los Angeles, CA, 90007</p>
+                <p>Email: <br><a href="mailto:nissanth@usc.edu">nissanth@usc.edu</a></p>
+                <p>LinkedIn: <br><a
+                        href="https://www.linkedin.com/in/nissanth-neelakandan-abirami-76a828217/">Nissanth Neelakandan
+                        Abirami</a></p>
+            </div>
+            <div class="map-container">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3306.6053495696765!2d-118.27554302350217!3d34.02833977316602!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2c7dd25439f1f%3A0x325116afdbfd6d29!2sThe%20Lorenzo%20Apartments!5e0!3m2!1sen!2sus!4v1723331209325!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            <form class="contact-form">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </section>
+    </div>
+    <script>
+        // Animate skill bars
+        const skillsSection = document.getElementById('skills');
+        const skillBars = document.querySelectorAll('.skill-bar span');
+        function fillSkillBars() {
+            skillBars.forEach(skill => {
+                const width = skill.style.width;
+                skill.style.width = '0';
+                setTimeout(() => {
+                    skill.style.width = width;
+                }, 100);
+            });
+        }
+        let skillsSectionVisible = false;
+        window.addEventListener('scroll', () => {
+            const sectionTop = skillsSection.getBoundingClientRect().top;
+            const windowHeight = window.innerHeight;
+            if (sectionTop < windowHeight && sectionTop >= 0 && !skillsSectionVisible) {
+                fillSkillBars();
+                skillsSectionVisible = true;
+            }
+        });
+        // Toggle sidebar
+        document.getElementById('toggle-btn').addEventListener('click', function () {
+            document.getElementById('sidebar').classList.toggle('active');
+        });
+        document.querySelectorAll('#sidebar nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetSection = document.getElementById(targetId);
+                document.querySelectorAll('.section').forEach(section => {
+                    section.classList.remove('active');
+                });
+                targetSection.classList.add('active');
+                targetSection.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+        window.addEventListener('scroll', () => {
+            document.querySelectorAll('.section').forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                if (sectionTop < windowHeight && sectionTop >= 0) {
+                    section.classList.add('visible');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
